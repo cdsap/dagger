@@ -30,6 +30,7 @@ genrule(
          "cd  tmp",
          "pwd",
          "cd ..",
+         "bazel --version",
         "find $(SRCS) -type f -name '*.jar' -exec unzip -o {} -d tmp \\;",
         "echo 'inaki'",
         "echo 'jar -cvf $@ -C tmp .'",
