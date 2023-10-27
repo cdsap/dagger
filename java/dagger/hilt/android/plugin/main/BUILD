@@ -27,8 +27,14 @@ genrule(
     # Combine all the jar files by extracting them to the same dir and package them again.
     cmd = " && ".join([
         "mkdir tmp",
+         "cd  tmp",
+         "pwd",
+         "cd ..",
         "find $(SRCS) -type f -name '*.jar' -exec unzip -o {} -d tmp \\;",
-        "jar -cvf $@ -C tmp .",
+        "echo 'inaki'",
+        "echo 'jar -cvf $@ -C tmp .'",
+               "echo $@",
+        " jar -cvf $@ -C tmp .",
     ]),
     local = True,
 )
