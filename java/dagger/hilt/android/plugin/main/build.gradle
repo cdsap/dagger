@@ -102,23 +102,32 @@ tasks.register("importSharedLib").configure {
   def outputDir = file("${project.projectDir}/libs")
   outputs.dir(outputDir)
   doLast {
+      println("1")
     def buildCmd = 'bazel'
     def buildDir = 'bazel-bin'
     def findGenFilesParent
+      println("3")
     findGenFilesParent = { File dir ->
+        println("2")
       if (dir == null || !dir.isDirectory()) {
         return null
       }
+        println("4")
       if (new File(dir, buildDir).exists()) {
         return dir
       } else {
         return findGenFilesParent(dir.parentFile)
       }
+        println("5")
     }
     // Build shared lib
+      println("6")
     def bazelOutput = new ByteArrayOutputStream()
     def buildResult = exec {
+        println("7")
       commandLine buildCmd, 'build', 'import-shared-lib'
+        println("assasasasaas")
+        println(bazelOutput)
       standardOutput = bazelOutput
       errorOutput = bazelOutput
     }
